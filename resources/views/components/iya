@@ -1,0 +1,552 @@
+document.addEventListener('DOMContentLoaded', function () {
+  const menuToggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('hs-navbar-hcail');
+  const openIcon = menuToggle.querySelector('.hs-collapse-open\\:hidden');
+  const closeIcon = menuToggle.querySelector('.hs-collapse-open\\:block');
+
+  menuToggle.addEventListener('click', function () {
+    // Cek apakah ukuran layar lebih besar dari md (768px)
+    if (window.innerWidth < 768) {
+      // Toggle height and background for smooth opening/closing
+      if (menu.classList.contains('hidden')) {
+        menu.classList.remove('hidden');
+        menu.style.maxHeight = menu.scrollHeight + 'px';  // Set height to content height
+        menu.classList.add('bg-orange-300'); // Add background color for dropdown
+      } else {
+        menu.style.maxHeight = '0px';  // Collapse menu
+        menu.classList.remove('bg-blue-500'); // Remove background color
+        setTimeout(() => {
+          menu.classList.add('hidden');  // Hide after transition
+        }, 300);  // Matches the duration in Tailwind (300ms)
+      }
+      
+      // Toggle icon
+      openIcon.classList.toggle('hidden');
+      closeIcon.classList.toggle('hidden');
+    }
+  });
+
+  // Reset style when resizing the window to large size
+  window.addEventListener('resize', function () {
+    if (window.innerWidth >= 768) {
+      menu.style.maxHeight = 'none'; // Reset max-height
+      menu.classList.remove('hidden'); // Make sure menu is visible on large screens
+      menu.classList.remove('bg-blue-500'); // Ensure background color is removed on large screens
+      openIcon.classList.remove('hidden'); // Reset to open icon
+      closeIcon.classList.add('hidden');  // Reset to closed icon
+    }
+  });
+});
+
+
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./resources/**/*.blade.php",
+    "./resources/**/*.js",
+    "./resources/**/*.vue",
+  ],
+  theme: {
+    extend: {
+      keyframes: {
+        'custom-bounce': {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-20px)' }, // Atur nilai agar tidak terlalu tinggi
+        },
+        'fade-up': {
+          '0%': { transform: 'translateY(100%)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+      },
+      animation: {
+        'bounce-slow': 'custom-bounce 10s ease-in-out infinite',
+        'fade-up': 'fade-up 2s ease-out forwards',
+      },
+      duration: {
+        '10000': '10000ms', // Tambahkan durasi 10 detik
+      },
+    },
+  },
+  plugins: [],
+}
+
+
+
+
+
+//about 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    <style>
+        .dropdown-container {
+            display: grid;
+            grid-template-columns: 1fr; /* Satu kolom */
+            gap: 1rem; /* Jarak antar dropdown */
+        }
+        .dropdown {
+            position: relative;
+        }
+        .dropdown-menu {
+            display: none; /* Sembunyikan menu dropdown secara default */
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 60px;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 0.375rem;
+            padding: 0.5rem;
+            z-index: 10;
+        }
+        .dropdown-menu a {
+            display: block;
+            padding: 0.5rem;
+            color: #333;
+            text-decoration: none;
+        }
+        .dropdown-menu a:hover {
+            background-color: #f0f0f0;
+        }
+        .dropdown-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 0.375rem;
+            background-color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<section class="bg-white">
+    <h2 class="text-center font-bold tracking-wide text-3xl pt-10 text-orange-600">About Us</h2>
+
+    <!-- div untuk kedua kontainer -->
+    <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6 text-gray-500">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+            <!-- Kontainer Kiri: Teks dan List -->
+            <div class="flex flex-col justify-between">
+                <div>
+                    <p class="mb-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sed tempore iure ab nobis dignissimos pariatur, eveniet aut deserunt necessitatibus possimus cupiditate accusantium quis maiores inventore, animi earum omnis perferendis aliquam?</p>
+                    <ul class="space-y-2 text-left text-gray-500 dark:text-gray-500">
+                        <li class="flex items-center space-x-3 rtl:space-x-reverse">
+                            <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-500 dark:text-blue-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
+                            </svg>
+                            <span>Individual configuration</span>
+                        </li>
+                        <li class="flex items-center space-x-3 rtl:space-x-reverse">
+                            <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-500 dark:text-blue-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
+                            </svg>
+                            <span>No setup, or hidden fees</span>
+                        </li>
+                        <li class="flex items-center space-x-3 rtl:space-x-reverse">
+                            <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-500 dark:text-blue-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
+                            </svg>
+                            <span>Team size: <span class="text-gray-500">1 developer</span></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Kontainer Kanan: Teks dan Button -->
+            <div class="flex flex-col">
+                <div>
+                    <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam id dolores numquam similique earum incidunt amet quaerat aliquam cumque ratione corrupti iste ea sapiente nisi nam voluptas, saepe, obcaecati magnam.</p>
+                </div>
+                <div>
+                    <button type="button" class="py-2 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border-2 border-orange-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-white dark:text-gray-400 dark:border-orange-600 dark:hover:text-white dark:hover:bg-orange-700">
+                        Alternative
+                    </button>
+                </div>
+            </div>
+
+            <!-- section about kedua -->
+            <div class="flex flex-col justify-between mt-10">
+                <div>
+                    <p class="text-2xl font-semibold text-orange-700">Semua fitur RadbooX tidak perlu join Third Party</p>
+                    <p class="mb-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sed tempore iure ab nobis dignissimos pariatur, eveniet aut deserunt necessitatibus possimus cupiditate accusantium quis maiores inventore, animi earum omnis perferendis aliquam?</p>
+
+                    <div class="dropdown-container">
+                        <!-- Dropdown 1 -->
+                        <div class="dropdown">
+                            <button class="dropdown-toggle w-full" aria-haspopup="menu" aria-expanded="false">
+                                01 Notifikasi Via WhatsApp Menggunakan Nomor Sendiri
+                                <svg class="hs-dropdown-open:rotate-180 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="m6 9 6 6 6-6"/>
+                                </svg>
+                            </button>
+                            <div class="dropdown-menu" role="menu" aria-orientation="vertical">
+                                <a href="#">NewsleFitur gratis ini langsung anda bisa gunakan secara penuh tanpa ada biaya tambahan. Dan kami sudah menyediakan Scan QR Code langsung melalui halaman account jika anda ingin menggunakan nomor whatsapp sendiri, namun secara default kami sudah menyiapkan nomor WhatsApp khusus untuk notifikasi bilamana anda tidak ingin menggunakan nomor whatsapp sendiri.</a>
+                            </div>
+                        </div>
+
+                        <!-- Dropdown 2 -->
+                        <div class="dropdown">
+                            <button class="dropdown-toggle w-full" aria-haspopup="menu" aria-expanded="false">
+                                02 Generate invoice otomatis oleh sistem
+                                <svg class="hs-dropdown-open:rotate-180 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="m6 9 6 6 6-6"/>
+                                </svg>
+                            </button>
+                            <div class="dropdown-menu" role="menu" aria-orientation="vertical">
+                                <a href="#">Tagihan pelanggan otomatis akan di buat di setiap tanggal atau pada tiap bulan nya. Pelanggan secara realtime akan mendapatkan notifikasi terkait terbitnya invoice.</a>
+                            </div>
+                        </div>
+
+                        <!-- Dropdown 3 -->
+                        <div class="dropdown">
+                            <button class="dropdown-toggle w-full" aria-haspopup="menu" aria-expanded="false">
+                                03 Notifikasi Via WhatsApp Menggunakan Nomor Sendiri
+                                <svg class="hs-dropdown-open:rotate-180 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="m6 9 6 6 6-6"/>
+                                </svg>
+                            </button>
+                            <div class="dropdown-menu" role="menu" aria-orientation="vertical">
+                                <a href="#">NewsleFitur gratis ini langsung anda bisa gunakan secara penuh tanpa ada biaya tambahan. Dan kami sudah menyediakan Scan QR Code langsung melalui halaman account jika anda ingin menggunakan nomor whatsapp sendiri, namun secara default kami sudah menyiapkan nomor WhatsApp khusus untuk notifikasi bilamana anda tidak ingin menggunakan nomor whatsapp sendiri.</a>
+                            </div>
+                        </div>
+
+                        <!-- Dropdown 4 -->
+                        <div class="dropdown">
+                            <button class="dropdown-toggle w-full" aria-haspopup="menu" aria-expanded="false">
+                                04 Rekap Laporan Harian dan Bulanan
+                                <svg class="hs-dropdown-open:rotate-180 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="m6 9 6 6 6-6"/>
+                                </svg>
+                            </button>
+                            <div class="dropdown-menu" role="menu" aria-orientation="vertical">
+                                <a href="#">Semua transaksi akan di rekap dalam harian dan bulanan. Anda tidak perlu repot membuat laporan secara manual, karena system akan membuatkan untuk anda secara otomatis.</a>
+                            </div>
+                        </div>
+
+                        <!-- Dropdown 5 -->
+                        <div class="dropdown">
+                            <button class="dropdown-toggle w-full" aria-haspopup="menu" aria-expanded="false">
+                              05 Support Multi User and Role
+                                <svg class="hs-dropdown-open:rotate-180 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="m6 9 6 6 6-6"/>
+                                </svg>
+                            </button>
+                            <div class="dropdown-menu" role="menu" aria-orientation="vertical">
+                                <a href="#">Jika anda memiliki karyawan atau teknisi lainnya, anda cukup bikin user tambahan sebagai Operator dan kasir untuk pencatatan keuangan atau lain nya.</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- image kedua -->
+            <div class="flex flex-col">
+                <div>
+                    <img class="w-auto h-auto mt-10 animate-ping-and-bounce" src="{{ asset('assets/ilus.png') }}" alt="dashboard image">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.dropdown-toggle').forEach(dropdownToggle => {
+            const dropdownMenu = dropdownToggle.nextElementSibling;
+
+            dropdownToggle.addEventListener('click', function () {
+                // Toggle visibility
+                if (dropdownMenu.style.display === 'none' || !dropdownMenu.style.display) {
+                    dropdownMenu.style.display = 'block';
+                } else {
+                    dropdownMenu.style.display = 'none';
+                }
+            });
+
+            // Close dropdown if clicked outside
+            document.addEventListener('click', function (event) {
+                if (!dropdownToggle.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                    dropdownMenu.style.display = 'none';
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>
+
+
+
+
+//service 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services</title>
+</head>
+<body>
+<section class="bg-white">
+        
+        <!-- judul -->
+        <h2 class="text-center font-bold tracking-wide text-3xl pt-10 text-orange-400">Services</h2>
+
+        <!-- deskripsi -->
+         <div class="w-auto h-auto mx-auto max-w-screen-xl items-center md:py-8 py-8 px-4 sm:py-10 lg:px-6 text-gray-500 text-center">
+            <p>RadbooX menyediakan paket langganan dengan harga bervariasi. Semua paket mendapatkan performance server yang sama. Dengan dukungan tim teknis yang sangat berpengalaman dalam bidang jaringan internet, siap Support penuh secara gratis 100% selama berlangganan.</p>
+         </div>
+
+         <!-- container pembungkus card -->
+         <div class="md:py-0 py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6 text-gray-500">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 items-center h-full ">
+
+        <!-- card 1 -->
+        <div class="max-w-sm p-6 bg-white border border-orange-200 rounded-lg shadow dark:bg-white dark:border-orange-300 transition-transform duration-300 ease-in-out hover:-translate-y-5">
+            <svg class="w-7 h-7 text-gray-500 dark:text-gray-400 mb-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M18 5h-.7c.229-.467.349-.98.351-1.5a3.5 3.5 0 0 0-3.5-3.5c-1.717 0-3.215 1.2-4.331 2.481C8.4.842 6.949 0 5.5 0A3.5 3.5 0 0 0 2 3.5c.003.52.123 1.033.351 1.5H2a2 2 0 0 0-2 2v3a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V7a2 2 0 0 0-2-2ZM8.058 5H5.5a1.5 1.5 0 0 1 0-3c.9 0 2 .754 3.092 2.122-.219.337-.392.635-.534.878Zm6.1 0h-3.742c.933-1.368 2.371-3 3.739-3a1.5 1.5 0 0 1 0 3h.003ZM11 13H9v7h2v-7Zm-4 0H2v5a2 2 0 0 0 2 2h3v-7Zm6 0v7h3a2 2 0 0 0 2-2v-5h-5Z"/>
+            </svg>
+            <a href="#">
+                <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-orange-400">Radius Server</h5>
+            </a>
+            <p class="mb-3 font-normal text-gray-500 dark:text-gray-500">Support PPPoE dan Hotspot, dengan Protokol CHAP, MSCHAP dan PAP</p>
+        </div>
+
+        <!-- card 2 -->
+        <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-white dark:border-orange-300 transition-transform duration-300 ease-in-out hover:-translate-y-5">
+            <svg class="w-7 h-7 text-gray-500 dark:text-gray-400 mb-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M18 5h-.7c.229-.467.349-.98.351-1.5a3.5 3.5 0 0 0-3.5-3.5c-1.717 0-3.215 1.2-4.331 2.481C8.4.842 6.949 0 5.5 0A3.5 3.5 0 0 0 2 3.5c.003.52.123 1.033.351 1.5H2a2 2 0 0 0-2 2v3a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V7a2 2 0 0 0-2-2ZM8.058 5H5.5a1.5 1.5 0 0 1 0-3c.9 0 2 .754 3.092 2.122-.219.337-.392.635-.534.878Zm6.1 0h-3.742c.933-1.368 2.371-3 3.739-3a1.5 1.5 0 0 1 0 3h.003ZM11 13H9v7h2v-7Zm-4 0H2v5a2 2 0 0 0 2 2h3v-7Zm6 0v7h3a2 2 0 0 0 2-2v-5h-5Z"/>
+            </svg>
+            <a href="#">
+                <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-orange-400">Billing</h5>
+            </a>
+            <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">Manajemen keuangan dan catatan pembayaran pelanggan</p>
+        </div>
+
+        <!-- card 3 -->
+        <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-white dark:border-orange-300 transition-transform duration-300 ease-in-out hover:-translate-y-5">
+            <svg class="w-7 h-7 text-gray-500 dark:text-gray-400 mb-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M18 5h-.7c.229-.467.349-.98.351-1.5a3.5 3.5 0 0 0-3.5-3.5c-1.717 0-3.215 1.2-4.331 2.481C8.4.842 6.949 0 5.5 0A3.5 3.5 0 0 0 2 3.5c.003.52.123 1.033.351 1.5H2a2 2 0 0 0-2 2v3a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V7a2 2 0 0 0-2-2ZM8.058 5H5.5a1.5 1.5 0 0 1 0-3c.9 0 2 .754 3.092 2.122-.219.337-.392.635-.534.878Zm6.1 0h-3.742c.933-1.368 2.371-3 3.739-3a1.5 1.5 0 0 1 0 3h.003ZM11 13H9v7h2v-7Zm-4 0H2v5a2 2 0 0 0 2 2h3v-7Zm6 0v7h3a2 2 0 0 0 2-2v-5h-5Z"/>
+            </svg>
+            <a href="#">
+                <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-orange-400">Update</h5>
+            </a>
+            <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">Fitur-fitur akan selalu di update mengikuti kebutuhan dan maintenance.</p>
+        </div>
+
+        <!-- card 4 -->
+        <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-white dark:border-orange-300 transition-transform duration-300 ease-in-out hover:-translate-y-5">
+            <svg class="w-7 h-7 text-gray-500 dark:text-gray-400 mb-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M18 5h-.7c.229-.467.349-.98.351-1.5a3.5 3.5 0 0 0-3.5-3.5c-1.717 0-3.215 1.2-4.331 2.481C8.4.842 6.949 0 5.5 0A3.5 3.5 0 0 0 2 3.5c.003.52.123 1.033.351 1.5H2a2 2 0 0 0-2 2v3a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V7a2 2 0 0 0-2-2ZM8.058 5H5.5a1.5 1.5 0 0 1 0-3c.9 0 2 .754 3.092 2.122-.219.337-.392.635-.534.878Zm6.1 0h-3.742c.933-1.368 2.371-3 3.739-3a1.5 1.5 0 0 1 0 3h.003ZM11 13H9v7h2v-7Zm-4 0H2v5a2 2 0 0 0 2 2h3v-7Zm6 0v7h3a2 2 0 0 0 2-2v-5h-5Z"/>
+            </svg>
+            <a href="#">
+                <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-orange-400">Backup</h5>
+            </a>
+            <p class="mb-3 font-normal text-gray-500 dark:text-gray-400">Sistem kami sudah auto backup, SLA 99% uptime</p>
+            <!-- <a href="#" class="inline-flex font-medium items-center text-blue-600 hover:underline">
+                See our guideline
+                <svg class="w-3 h-3 ms-2.5 rtl:rotate-[270deg]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11v4.833A1.166 1.166 0 0 1 13.833 17H2.167A1.167 1.167 0 0 1 1 15.833V4.167A1.166 1.166 0 0 1 2.167 3h4.618m4.447-2H17v5.768M9.111 8.889l7.778-7.778"/>
+                </svg>
+            </a> -->
+        </div>
+
+        <!-- akhir kontainer pembungkus card -->
+        </div>
+    </div>
+
+</section>
+</body>
+</html>
+
+
+
+//faq 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ</title>
+</head>
+<body>
+<section id="faq" class="bg-white">
+<h2 class="text-center font-bold tracking-wide text-3xl pt-10 text-orange-400">FAQ</h2>
+
+    <!-- div untuk kedua kontainer -->
+    <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6 text-gray-500">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 h-full">
+        
+        <!-- Kontainer faq sebelah kiri -->
+        <div class="flex flex-col justify-between gap-2">
+              
+                    <div class="p-3 border-2 border-red-200 rounded-md bg-white cursor-pointer">
+                        <div class="flex items-center space-x-3 rtl:space-x-reverse">
+                            <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-500 dark:text-blue-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
+                            </svg>
+                            <span>ceritanya teh disini ada pertanyaan buat customer gitu?</span><br>
+                         
+                        </div>   
+                        <p class="pl-6">nah disini jawabannya</p>
+                    </div>
+
+                    <div class="p-3 border-2 border-red-200 rounded-md bg-white cursor-pointer">
+                        <div class="flex items-center space-x-3 rtl:space-x-reverse">
+                            <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-500 dark:text-blue-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
+                            </svg>
+                            <span>ceritanya teh disini ada pertanyaan buat customer gitu?</span><br>
+                         
+                        </div>   
+                        <p class="pl-6">nah disini jawabannya</p>
+                    </div>
+
+                    <div class="p-3 border-2 border-red-200 rounded-md bg-white cursor-pointer">
+                        <div class="flex items-center space-x-3 rtl:space-x-reverse">
+                            <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-500 dark:text-blue-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
+                            </svg>
+                            <span>ceritanya teh disini ada pertanyaan buat customer gitu?</span><br>
+                         
+                        </div>   
+                        <p class="pl-6">nah disini jawabannya</p>
+                    </div>
+
+            <!-- penutup kontainer faq sebelah kiri -->
+            </div>
+
+        <!-- Kontainer faq sebelah kanan -->
+        <div class="flex flex-col gap-2">
+              
+              <div class="p-3 border-2 border-red-200 rounded-md bg-white cursor-pointer">
+                  <div class="flex items-center space-x-3 rtl:space-x-reverse">
+                      <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-500 dark:text-blue-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
+                      </svg>
+                      <span>ceritanya teh disini ada pertanyaan buat customer gitu?</span><br>
+                   
+                  </div>   
+                  <p class="pl-6">nah disini jawabannya</p>
+              </div>
+
+              <div class="p-3 border-2 border-red-200 rounded-md bg-white cursor-pointer">
+                  <div class="flex items-center space-x-3 rtl:space-x-reverse">
+                      <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-500 dark:text-blue-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
+                      </svg>
+                      <span>ceritanya teh disini ada pertanyaan buat customer gitu?</span><br>
+                   
+                  </div>   
+                  <p class="pl-6">nah disini jawabannya</p>
+              </div>
+
+              <div class="p-3 border-2 border-red-200 rounded-md bg-white cursor-pointer">
+                  <div class="flex items-center space-x-3 rtl:space-x-reverse">
+                      <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-500 dark:text-blue-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
+                      </svg>
+                      <span>ceritanya teh disini ada pertanyaan buat customer gitu?</span><br>
+                   
+                  </div>   
+                  <p class="pl-6">nah disini jawabannya</p>
+              </div>
+
+      <!-- penutup kontainer faq sebelah kanan -->
+      </div>
+
+    <!-- penutup div paling awal -->
+        </div>
+    </div>
+</section>
+</body>
+</html>
+
+
+js navbar :
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const menuToggle = document.getElementById('menu-toggle');
+      const menu = document.getElementById('hs-navbar-hcail');
+      const openIcon = menuToggle.querySelector('.hs-collapse-open\\:hidden');
+      const closeIcon = menuToggle.querySelector('.hs-collapse-open\\:block');
+    
+      menuToggle.addEventListener('click', function () {
+        if (window.innerWidth < 768) {
+          if (menu.classList.contains('hidden')) {
+            menu.classList.remove('hidden');
+            menu.style.maxHeight = menu.scrollHeight + 'px';
+            menu.classList.add('bg-orange-300');
+          } else {
+            menu.style.maxHeight = '0px';
+            setTimeout(() => {
+              menu.classList.add('hidden');
+            }, 300);
+          }
+          openIcon.classList.toggle('hidden');
+          closeIcon.classList.toggle('hidden');
+        }
+      });
+    
+      window.addEventListener('resize', function () {
+        if (window.innerWidth >= 768) {
+          menu.style.maxHeight = 'none';
+          menu.classList.remove('hidden');
+          menu.classList.remove('bg-orange-300');
+          openIcon.classList.remove('hidden');
+          closeIcon.classList.add('block');
+        }
+      });
+    
+      function updateActiveMenuOnScroll() {
+        const sections = document.querySelectorAll('section');
+        const menuItems = document.querySelectorAll('#hs-navbar-hcail a');
+        let index = sections.length;
+    
+        while (--index && window.scrollY + (window.innerHeight / 2) < sections[index].offsetTop) {}
+    
+        menuItems.forEach(item => {
+          item.classList.remove('border-b-2', 'border-orange-500');
+        });
+    
+        if (index >= 0) {
+          const id = sections[index].id;
+          const activeMenu = document.querySelector(`#hs-navbar-hcail a[href="#${id}"]`);
+          if (activeMenu) {
+            activeMenu.classList.add('border-b-2', 'border-orange-500');
+          }
+        }
+      }
+    
+      function updateActiveMenuOnLoad() {
+        const currentUrl = window.location.hash.substring(1) || 'home'; // Default to 'home' if no hash
+        const menuItems = document.querySelectorAll('#hs-navbar-hcail a');
+        
+        menuItems.forEach(item => {
+          item.classList.remove('border-b-2', 'border-orange-500');
+        });
+    
+        if (currentUrl) {
+          const activeMenu = document.querySelector(`#hs-navbar-hcail a[href="#${currentUrl}"]`);
+          if (activeMenu) {
+            activeMenu.classList.add('border-b-2', 'border-orange-500');
+          }
+        }
+      }
+    
+      window.addEventListener('scroll', updateActiveMenuOnScroll);
+      window.addEventListener('popstate', updateActiveMenuOnLoad);
+      window.addEventListener('hashchange', updateActiveMenuOnLoad);
+      updateActiveMenuOnLoad(); // Initial check on load
+    
+    });
+    </script>
