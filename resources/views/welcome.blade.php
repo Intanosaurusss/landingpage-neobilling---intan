@@ -19,7 +19,6 @@
         @include('components.about')
         @include('components.services')
         @include('components.price')
-        @include('components.faq')
         @include('components.contact')
         @include('components.footer')
         

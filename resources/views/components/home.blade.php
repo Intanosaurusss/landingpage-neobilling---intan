@@ -18,13 +18,11 @@
     <div class="gap-8 items-center py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6">
         <img class="w-auto h-auto mt-10 animate-ping-and-bounce" src="{{ asset('assets/image1.png') }}" alt="dashboard image">
         <div class="mt-4 md:mt-0">
-            <h2 class="mb-4 text-4xl tracking-tight font-extrabold dark:text-orange-600 shadow-white">Solusi Akuntansi Dan Otentikasi MikroTik Anda</h2>
-            <p class="font-light text-white md:text-lg">Radius Server, Users Management, Billing, Notification, Payment Gateway, OLT ZTE Management</p>
-            <p class="mb-6 font-light text-white md:text-lg">Semua dalam satu Applikasi</p>
-            
+            <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-white shadow-white">ID Neobilling</h2>
+            <p class="font-light text-gray-100 md:text-lg mb-4">Aplikasi manajemen untuk pengusaha ISP/mini ISP yang mengatur manajemen pelanggan dan keuangan (billing). Terintegrasi dengan MikroTik seperti PPPoE dan Hotspot, IDNeobilling menawarkan kemudahan layanan dalam satu platform.</p>
             <div class="grid md:grid-cols-3 grid-cols-2 gap-2">
             <a href="#about" class="inline-flex items-center justify-center text-center text-white bg-orange-600 hover:bg-orange-400 hover:border-orange-600 hover:border-2 focus:ring-4 focus:ring-orange-600 font-medium rounded-full text-sm py-2 w-auto">
-                Get started
+                Mulai
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 ml-3">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
                 </svg>
@@ -33,7 +31,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 mr-2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z" />
                 </svg>
-                Watch Video
+                Tonton Video
             </a>
             </div>
 
@@ -54,7 +52,7 @@
                 </div>
             </div>
         </div>
-
+        
         <!-- penutup container div yang paling atas -->
         </div>
     </div>
